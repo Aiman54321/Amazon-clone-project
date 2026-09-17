@@ -1,338 +1,682 @@
-*{
+/* =========================================
+   Amazon UI Clone — Responsive Styles
+   ========================================= */
 
+* {
     margin: 0;
-    font-family: Arial;
+    padding: 0;
+    font-family: Arial, sans-serif;
     box-sizing: border-box;
-
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
-.navbar{
+body {
+    min-width: 0;
+    overflow-x: hidden;
+    background-color: #e2e7e6;
+}
 
+/* =========================================
+   Navbar
+   ========================================= */
 
-    height: 60px;
+.navbar {
+    min-height: 60px;
     background-color: #0f1111;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    
-
+    gap: 6px;
+    padding: 4px 8px;
 }
 
-
-.nav-logo{
-
+.nav-logo {
     height: 50px;
     width: 100px;
+    flex: 0 0 100px;
 }
 
-.logo{
-
+.logo {
     background-image: url(amazon_logo.png);
     height: 50px;
     width: 100%;
-    background-size: cover;
-
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.border{
-
+.border {
     border: 1.5px solid transparent;
+    border-radius: 2px;
 }
 
-.border:hover{
-
-    border: 1.5px solid white;
+.border:hover {
+    border-color: white;
 }
 
-/* box2 */
+/* =========================================
+   Location
+   ========================================= */
 
-.add-first{
+.nav-address {
+    flex: 0 0 auto;
+    padding: 7px 5px;
+}
 
+.add-first {
     color: #cccccc;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     margin-left: 15px;
+    white-space: nowrap;
 }
 
-.add-sec{
-
+.add-sec {
     color: white;
     font-size: 1rem;
     margin-left: 3px;
 }
 
-.add-icon{
-
+.add-icon {
     display: flex;
     align-items: center;
 }
 
-/* box3 */
+/* =========================================
+   Search
+   ========================================= */
 
-.nav-search{
-
+.nav-search {
     display: flex;
-    justify-content: space-evenly;
+    align-items: stretch;
     background-color: #febd68;
-    width: 620px;
+    width: min(620px, 40vw);
     height: 40px;
     border-radius: 4px;
+    overflow: hidden;
+    flex: 1 1 300px;
+    min-width: 180px;
 }
 
-.search-select{
-
+.search-select {
     background-color: #f3f3f3;
     width: 50px;
+    min-width: 50px;
     text-align: center;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
     border: none;
+    color: #333;
 }
 
-.search-input{
-
+.search-input {
     width: 100%;
+    min-width: 0;
+    padding: 0 8px;
     font-size: 1rem;
     border: none;
+    outline: none;
 }
 
-.search-icon{
-
+.search-icon {
     width: 45px;
+    min-width: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2 rem;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    font-size: 1.2rem;
     color: #0f1111;
+    cursor: pointer;
 }
 
-.nav-search:hover{
-
-    border: 2px solid orange;
+.nav-search:focus-within {
+    outline: 2px solid #ff9900;
 }
 
-/* box4 */
+/* =========================================
+   Account / Orders / Cart
+   ========================================= */
 
-span{
+.nav-signin,
+.nav-return {
+    flex: 0 0 auto;
+    padding: 7px 5px;
+    white-space: nowrap;
+}
 
+span {
     font-size: 0.7rem;
 }
 
-.nav-second{
-
+.nav-second {
     font-size: 0.85rem;
     font-weight: 700;
 }
 
-/* box6 */
+.nav-cart {
+    flex: 0 0 auto;
+    padding: 7px 5px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
 
-.nav-cart i{
-
+.nav-cart i {
     font-size: 30px;
+    vertical-align: middle;
 }
 
-.nav-cart{
+/* =========================================
+   Panel
+   ========================================= */
 
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-/* Panel */
-
-.panel{
-
-    height: 40px;
+.panel {
+    min-height: 40px;
     background-color: #222f3d;
+    color: white;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    gap: 18px;
+    padding: 0 15px;
 }
 
-.panel-ops p{
-
-    display: inline;
-    margin-left: 15px;
+.panel-all {
+    flex: 0 0 auto;
+    white-space: nowrap;
 }
 
-.panel-ops{
-
-    width: 70%;
+.panel-ops {
+    flex: 1 1 auto;
     font-size: 0.85rem;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 22px;
 }
 
-.panel-deals{
+.panel-ops p {
+    white-space: nowrap;
+}
 
+.panel-deals {
     font-size: 0.9rem;
     font-weight: 700;
+    white-space: nowrap;
 }
 
-/* Hero-section */
+/* =========================================
+   Hero Section
+   ========================================= */
 
-.hero-section{  
+/*
+   The original hero image has a 5:2 aspect ratio.
+   Keeping the container at the same ratio prevents
+   the image from being cropped.
+*/
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 2;
 
     background-image: url(hero_image.jpg);
-    background-size: cover;
-    height: 350px;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
     justify-content: center;
     align-items: flex-end;
+
+    padding: 0 15px;
 }
 
-.hero-msg{
+.hero-msg {
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    transform: translateX(-50%);
+
+    width: min(1200px, calc(100% - 30px));
+    min-height: 40px;
 
     background-color: white;
     color: black;
-    height: 40px;
+
     display: flex;
-    align-items: center; /*for vertically centering the element. */
-    justify-content: center; /*for horizontally centering the element*/
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
     font-size: 0.85rem;
-    width: 80%;
-    margin-bottom: 25px;
+    line-height: 1.35;
+
+    padding: 8px 14px;
+    z-index: 2;
 }
 
-.hero-msg a{
-
+.hero-msg a {
     color: #007185;
+    margin-left: 4px;
 }
 
-/*Shop section*/
+/* =========================================
+   Shop Section
+   ========================================= */
 
-.shop-section{
-
-    display: flex;
-    justify-content: space-evenly;
+.shop-section {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
     background-color: #e2e7e6;
-    flex-wrap: wrap;
+    padding: 0 15px 15px;
 }
 
-.box{
-    
-    /* border: 2px solid black; */
-
-    height: 400px;
-    width: 23%;
+.box {
+    min-height: 400px;
+    width: 100%;
     background-color: white;
-    padding: 20px 0px 15px;
-    margin-top: 15px;
+    padding: 20px 0 15px;
+    margin-top: 0;
 }
 
-.box-img{
+.box-content {
+    margin: 0 1rem;
+}
 
+.box-content h2 {
+    font-size: 1.35rem;
+    line-height: 1.2;
+}
+
+.box-img {
     height: 300px;
-    background-image: contain;
     margin-top: 1rem;
     margin-bottom: 1rem;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.box-content{
-
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
-
-.box-content p{
-
+.box-content p {
     color: #007185;
 }
 
-/*footer*/
+/* =========================================
+   Footer
+   ========================================= */
 
-
-
-footer{
-
-    margin-top: 15px;
+footer {
+    margin-top: 0;
 }
 
-
-
-.foot-panel1{
-
+.foot-panel1 {
     background-color: #37475a;
     color: white;
-    height: 50px;
+    min-height: 50px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.85rem;
 
+    font-size: 0.85rem;
+    cursor: pointer;
 }
 
-.foot-panel2{
-
+.foot-panel2 {
     background-color: #222f3d;
     color: white;
-    height: 300px;
-    display: flex;
+    min-height: 300px;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(130px, 180px));
     justify-content: space-evenly;
+
+    gap: 30px;
+    padding: 20px;
 }
 
-u{
+.foot-panel2 ul {
+    padding: 0;
+    margin: 0;
+}
 
-    margin-top: 20px;
+.foot-panel2 li {
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+.foot-panel2 li p {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.foot-panel2 a {
+    display: block;
+    font-size: 0.85rem;
+    color: #dddddd;
     text-decoration: none;
 }
 
-u li{
-
-    list-style: none;
-    margin-bottom: 5px;
+.foot-panel2 a:hover,
+.pages a:hover {
+    text-decoration: underline;
 }
 
-
-
-ul a{
-
-    display: block;
-    font-size: 0.85rem;
-    margin-top: 10px;
-    color: #dddddd;
-    
-    
-    
-}
-
-.foot-panel3{
-
+.foot-panel3 {
     background-color: #222f3d;
     color: white;
-    border-top: 0.5px solid white;
-    height: 70px;
+    border-top: 0.5px solid #66727d;
+
+    min-height: 70px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.logo{
-
-    background-image: url(amazon_logo.png);
-    background-size: cover;
-    height: 50px;
-    width: 100px;
-}
-
-.foot-panel4{
-
+.foot-panel4 {
     background-color: #0f1111;
     color: white;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    height: 100px;
+
+    min-height: 100px;
     font-size: 0.7rem;
     text-align: center;
+
+    padding: 0 15px 20px;
 }
 
-.pages{
+.pages {
+    padding: 25px 10px 8px;
 
-    padding: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
 }
 
-.copyright{
+.pages a {
+    color: white;
+    text-decoration: none;
+}
 
+.copyright {
     padding-top: 5px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   Responsive Breakpoints
+   ========================================= */
+
+/* =========================================
+   Tablets / Small Laptops
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 5px 10px;
+    }
+
+    .nav-search {
+        order: 5;
+        flex-basis: 100%;
+        width: 100%;
+        margin: 2px 0 4px;
+    }
+
+    .panel-ops {
+        gap: 15px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .panel-ops::-webkit-scrollbar {
+        display: none;
+    }
+
+    .panel-deals {
+        display: none;
+    }
+
+    .shop-section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /*
+       Do NOT use a fixed min-height here.
+       The hero keeps the original image ratio.
+    */
+
+    .hero-section {
+        aspect-ratio: 5 / 2;
+    }
+
+    .hero-msg {
+        width: calc(100% - 30px);
+    }
+}
+
+/* =========================================
+   Phones
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        min-height: auto;
+        gap: 2px;
+        padding: 4px;
+    }
+
+    .nav-logo {
+        width: 82px;
+        height: 45px;
+        flex-basis: 82px;
+    }
+
+    .nav-logo .logo {
+        height: 45px;
+    }
+
+    .nav-address {
+        padding: 5px 3px;
+    }
+
+    .add-first {
+        font-size: 0.65rem;
+        margin-left: 8px;
+    }
+
+    .add-sec {
+        font-size: 0.85rem;
+    }
+
+    .nav-signin,
+    .nav-return {
+        padding: 5px 3px;
+    }
+
+    .nav-signin {
+        margin-left: auto;
+    }
+
+    .nav-second {
+        font-size: 0.7rem;
+    }
+
+    .nav-cart {
+        padding: 5px 3px;
+        font-size: 0.7rem;
+    }
+
+    .nav-cart i {
+        font-size: 24px;
+    }
+
+    .nav-search {
+        height: 38px;
+        margin: 3px 2px 5px;
+    }
+
+    .search-select {
+        width: 42px;
+        min-width: 42px;
+        font-size: 0.75rem;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+    }
+
+    .search-icon {
+        width: 42px;
+        min-width: 42px;
+    }
+
+    /* Panel */
+
+    .panel {
+        min-height: 40px;
+        padding: 0 10px;
+        gap: 14px;
+        overflow: hidden;
+    }
+
+    .panel-ops {
+        gap: 18px;
+        overflow-x: auto;
+    }
+
+    .panel-ops p {
+        font-size: 0.75rem;
+    }
+
+    /* Hero */
+
+    .hero-section {
+        aspect-ratio: 5 / 2;
+        padding: 0 8px;
+    }
+
+    .hero-msg {
+        bottom: 12px;
+        width: calc(100% - 16px);
+
+        min-height: 32px;
+
+        font-size: 0.72rem;
+        line-height: 1.25;
+
+        padding: 7px 10px;
+    }
+
+    .hero-msg a {
+        margin-left: 3px;
+    }
+
+    /* Shop */
+
+    .shop-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .box {
+        min-height: 0;
+        padding: 16px 0 14px;
+    }
+
+    .box-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .box-img {
+        height: min(72vw, 300px);
+
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    /* Footer */
+
+    .foot-panel2 {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+
+        min-height: auto;
+
+        gap: 28px 18px;
+        padding: 28px 18px;
+    }
+
+    .foot-panel2 a,
+    .foot-panel2 li p {
+        font-size: 0.8rem;
+    }
+
+    .pages {
+        gap: 10px 15px;
+        padding: 22px 5px 10px;
+    }
+}
+
+/* =========================================
+   Very Small Phones
+   ========================================= */
+
+@media (max-width: 380px) {
+
+    .nav-address {
+        display: none;
+    }
+
+    .nav-logo {
+        width: 75px;
+        flex-basis: 75px;
+    }
+
+    .nav-signin {
+        margin-left: 0;
+    }
+
+    .nav-second {
+        font-size: 0.65rem;
+    }
+
+    .shop-section {
+        padding: 8px;
+    }
+
+    .box {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .foot-panel2 {
+        grid-template-columns: 1fr 1fr;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    /* Keep complete hero image visible */
+
+    .hero-section {
+        aspect-ratio: 5 / 2;
+    }
+
+    .hero-msg {
+        bottom: 8px;
+        width: calc(100% - 16px);
+
+        font-size: 0.65rem;
+        line-height: 1.2;
+
+        padding: 5px 7px;
+    }
 }
